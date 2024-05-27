@@ -9,13 +9,31 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~51.0.7",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-firebase/app": "^20.0.0",
+    "@react-native-firebase/firestore": "^20.0.0",
+    "axios": "^1.7.2",
+    "expo": "~51.0.8",
+    "expo-device": "~6.0.2",
+    "expo-file-system": "~17.0.1",
+    "expo-location": "~17.0.1",
+    "expo-network": "~6.0.1",
     "expo-status-bar": "~1.12.1",
+    "expo-updates": "^0.25.14",
+    "express": "^4.19.2",
+    "firebase": "^10.12.1",
+    "git": "^0.1.5",
+    "json-server": "^1.0.0-beta.0",
+    "mysql": "^2.18.1",
+    "osenv": "^0.1.5",
     "react": "18.2.0",
-    "react-native": "0.74.1"
+    "react-native": "^0.74.1",
+    "react-native-device-detection": "^0.2.1",
+    "react-native-device-info": "^11.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "expo-module-scripts": "^3.5.1"
   },
   "private": true
 }

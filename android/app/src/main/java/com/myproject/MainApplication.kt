@@ -1,55 +1,79 @@
-package com.myproject
+package com.myproject;
 
-import android.app.Application
-import android.content.res.Configuration
+import android.app.Application;
+import android.content.res.Configuration;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import com.facebook.react.PackageList;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.ReactHost;
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
+import com.facebook.react.defaults.DefaultReactNativeHost;
+import com.facebook.soloader.SoLoader;
 
-import com.facebook.react.PackageList
-import com.facebook.react.ReactApplication
-import com.facebook.react.ReactNativeHost
-import com.facebook.react.ReactPackage
-import com.facebook.react.ReactHost
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
-import com.facebook.react.defaults.DefaultReactNativeHost
-import com.facebook.soloader.SoLoader
+import expo.modules.ApplicationLifecycleDispatcher;
+import expo.modules.ReactNativeHostWrapper;
 
-import expo.modules.ApplicationLifecycleDispatcher
-import expo.modules.ReactNativeHostWrapper
+import java.util.List;
 
-class MainApplication : Application(), ReactApplication {
+public class MainApplication extends Application implements ReactApplication {
 
-  override val reactNativeHost: ReactNativeHost = ReactNativeHostWrapper(
-        this,
-        object : DefaultReactNativeHost(this) {
-          override fun getPackages(): List<ReactPackage> {
-            // Packages that cannot be autolinked yet can be added manually here, for example:
-            // packages.add(new MyReactNativePackage());
-            return PackageList(this).packages
-          }
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return new ReactNativeHostWrapper(
+                this,
+                new DefaultReactNativeHost(this) {
+                    @Override
+                  protected List<ReactPackage> getPackages() {
+                        List<ReactPackage> packages = new PackageList(this).getPackages();
+                        // Add the Firebase package to the list of packages
+                        packages.add(new ReactNativeFirebaseAppPackage());
+                        return packages;
+                    }
 
-          override fun getJSMainModuleName(): String = ".expo/.virtual-metro-entry"
+                    @Override
+                    protected String getJSMainModuleName() {
+                        return ".expo/.virtual-metro-entry";
+                    }
 
-          override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+                    @Override
+                    protected boolean getUseDeveloperSupport() {
+                        return BuildConfig.DEBUG;
+                    }
 
-          override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-          override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
-      }
-  )
+                    @Override
+                    public boolean isNewArchEnabled() {
+                        return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
+                    }
 
-  override val reactHost: ReactHost
-    get() = ReactNativeHostWrapper.createReactHost(applicationContext, reactNativeHost)
-
-  override fun onCreate() {
-    super.onCreate()
-    SoLoader.init(this, false)
-    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-      // If you opted-in for the New Architecture, we load the native entry point for this app.
-      load()
+                    @Override
+                    public boolean isHermesEnabled() {
+                        return BuildConfig.IS_HERMES_ENABLED;
+                    }
+                }
+        );
     }
-    ApplicationLifecycleDispatcher.onApplicationCreate(this)
-  }
 
-  override fun onConfigurationChanged(newConfig: Configuration) {
-    super.onConfigurationChanged(newConfig)
-    ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig)
-  }
+    @Override
+    public ReactHost getReactHost() {
+        return ReactNativeHostWrapper.createReactHost(getApplicationContext(), getReactNativeHost());
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        SoLoader.init(this, false);
+        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            // If you opted-in for the New Architecture, we load the native entry point for this app.
+            DefaultNewArchitectureEntryPoint.load();
+        }
+        ApplicationLifecycleDispatcher.onApplicationCreate(this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig);
+    }
 }
