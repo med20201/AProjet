@@ -1,11 +1,32 @@
 {
   "gps": [
     {
-      "id": "6009",
       "deviceName": "samsung",
       "ipAddress": "192.168.13.94",
       "latitude": 35.5812411,
-      "longitude": -5.4012023
+      "longitude": -5.4012023,
+      "id": "ca70"
+    },
+    {
+      "deviceName": "IPhone",
+      "ipAddress": "192.168.3.134",
+      "latitude": 35.5687516,
+      "longitude": -5.3695618,
+      "id": "2b33"
+    },
+    {
+      "id": "ba6b",
+      "deviceName": "SAMSUNG S24",
+      "ipAddress": "192.168.3.134",
+      "latitude": 35.5687762,
+      "longitude": -5.3695529
+    },
+    {
+      "deviceName": "M2006C3LVG",
+      "ipAddress": "192.168.3.134",
+      "latitude": 35.5687446,
+      "longitude": -5.369574,
+      "id": "5a14"
     }
   ]
 }
