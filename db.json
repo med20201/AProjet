@@ -23,7 +23,13 @@
     },
     {
       "deviceName": "M2006C3LVG",
-      "ipAddress": "192.168.3.134",
+      "ipAddress": "192.168.31.188",
+      "latitude": 35.5687446,
+      "longitude": -5.369574,
+      "id": "5a14"
+    },{
+      "deviceName": "Redmi",
+      "ipAddress": "192.168.31.188",
       "latitude": 35.5687446,
       "longitude": -5.369574,
       "id": "5a14"
